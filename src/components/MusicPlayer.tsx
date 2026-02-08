@@ -3,16 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useMotionValue } from "motion/react";
-import {
-  Loader2,
-  Pause,
-  Play,
-  Repeat2,
-  Shuffle,
-  SkipBack,
-  SkipForward,
-  Volume2,
-} from "lucide-react";
+import { Loader2, Pause } from "lucide-react";
 
 type PlayerState = "playing" | "paused" | "loading";
 
@@ -123,10 +114,10 @@ export function MusicPlayer() {
   }, []);
 
   const containerClassName =
-    "w-[640px] max-w-[calc(100vw-48px)] radius-xl p-32 text-white transition-[background-color,box-shadow] duration-300";
+    "w-full max-w-[500px] h-[358px] opacity-100 radius-xl p-32 text-white shadow-player-container transition-[background-color] duration-300";
   const containerStateClassName = isPlaying
-    ? "bg-(--color-surface) shadow-player-playing"
-    : "bg-(--color-surface-elevated) shadow-player-paused";
+    ? "bg-(--color-surface)"
+    : "bg-(--color-surface-elevated)";
 
   const artworkScale = isPlaying ? 1 : isLoading ? 0.9 : 0.95;
 
@@ -238,7 +229,15 @@ export function MusicPlayer() {
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Shuffle"
           >
-            <Shuffle className="size-20" />
+            <Image
+              src="/Icon/Shuffle.svg"
+              alt="Shuffle"
+              width={20}
+              height={20}
+              className="h-20 w-20 opacity-100"
+              draggable={false}
+              unoptimized
+            />
           </motion.button>
 
           <motion.button
@@ -248,13 +247,22 @@ export function MusicPlayer() {
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Previous"
           >
-            <SkipBack className="size-22" />
+            <Image
+              src="/Icon/SkipBack.svg"
+              alt="Skip Back"
+              width={20}
+              height={20}
+              className="h-20 w-20 opacity-100"
+              draggable={false}
+              unoptimized
+            />
           </motion.button>
 
           <motion.button
             type="button"
             onClick={handleTogglePlayPause}
-            className="grid size-64 place-items-center radius-full bg-white/12 text-white"
+            className="grid size-56 place-items-center radius-full opacity-100 text-white"
+            style={{ background: "var(--Neutral-500, #717680)" }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 500, damping: 32 }}
@@ -292,7 +300,15 @@ export function MusicPlayer() {
                   transition={{ duration: 0.15 }}
                   className="grid place-items-center"
                 >
-                  <Play className="size-28" />
+                  <Image
+                    src="/Icon/Play1.svg"
+                    alt="Play"
+                    width={14}
+                    height={18}
+                    className="h-18 w-14 opacity-100"
+                    draggable={false}
+                    unoptimized
+                  />
                 </motion.span>
               )}
             </AnimatePresence>
@@ -305,7 +321,15 @@ export function MusicPlayer() {
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Next"
           >
-            <SkipForward className="size-22" />
+            <Image
+              src="/Icon/SkipFoward.svg"
+              alt="Skip Forward"
+              width={20}
+              height={20}
+              className="h-20 w-20 opacity-100"
+              draggable={false}
+              unoptimized
+            />
           </motion.button>
 
           <motion.button
@@ -315,7 +339,15 @@ export function MusicPlayer() {
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Repeat"
           >
-            <Repeat2 className="size-20" />
+            <Image
+              src="/Icon/Repeat.svg"
+              alt="Repeat"
+              width={20}
+              height={20}
+              className="h-20 w-20 opacity-100"
+              draggable={false}
+              unoptimized
+            />
           </motion.button>
         </div>
       </div>
@@ -323,7 +355,15 @@ export function MusicPlayer() {
       {/* Volume */}
       <div className="pt-22">
         <div className="flex items-center gap-14">
-          <Volume2 className="size-18 text-(--color-text-muted)" />
+          <Image
+            src="/Icon/Volume.svg"
+            alt="Volume"
+            width={16}
+            height={16}
+            className="h-16 w-16 opacity-100"
+            draggable={false}
+            unoptimized
+          />
 
           <div
             id="volume-track"

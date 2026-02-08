@@ -24,6 +24,9 @@
   /* Album gradient */
   --color-pink-500: #ec4899;
   --color-additional-pink-600: #db2777;
+
+  /* Neutral */
+  --Neutral-500: #717680;
 }
 
 @theme inline {
@@ -84,6 +87,10 @@ body {
 }
 
 @layer utilities {
+  .shadow-player-container {
+    box-shadow: 0px 4px 20px 0px #00000080;
+  }
+
   .shadow-player-paused {
     box-shadow:
       0 1px 2px rgba(0, 0, 0, 0.06),
