@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useMotionValue } from "motion/react";
-import { Loader2, Pause } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 type PlayerState = "playing" | "paused" | "loading";
 
@@ -114,14 +114,14 @@ export function MusicPlayer() {
   }, []);
 
   const containerClassName =
-    "w-full max-w-[500px] h-[358px] opacity-100 radius-xl p-32 text-white shadow-player-container transition-[background-color] duration-300";
+    "relative w-full max-w-[500px] h-[358px] opacity-100 radius-xl p-32 text-white shadow-player-container transition-[background-color] duration-300";
   const containerStateClassName = isPlaying
     ? "bg-(--color-surface)"
     : "bg-(--color-surface-elevated)";
 
   const artworkScale = isPlaying ? 1 : isLoading ? 0.9 : 0.95;
 
-  const barBaseClass = "w-8 origin-bottom radius-xxs bg-purple-500";
+  const barBaseClass = "w-8 origin-bottom radius-xxs bg-(--Primary-200)";
   const equalizerBarVariants = {
     playing: (index: number) => ({
       opacity: 1,
@@ -159,7 +159,7 @@ export function MusicPlayer() {
       {/* Header */}
       <div className="flex items-start gap-24">
         <motion.div
-          className="relative shrink-0"
+          className="relative shrink-0 -mt-16"
           animate={{ scale: artworkScale }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
           style={{ willChange: "transform" }}
@@ -181,13 +181,18 @@ export function MusicPlayer() {
         </motion.div>
 
         <div className="min-w-0 flex-1">
-          <div className="text-xl font-bold leading-7">Awesome Song Title</div>
-          <div className="pt-6 text-sm font-medium text-(--color-text-muted)">
+          <div className="absolute left-184 top-42 h-32 w-324 opacity-100 font-sans text-lg font-semibold leading-8">
+            Awesome Song Title
+          </div>
+          <div
+            className="absolute left-184 top-82 h-28 w-324 opacity-100 font-sans text-sm font-normal text-(--Neutral-400)"
+            style={{ letterSpacing: "-0.03em" }}
+          >
             Amazing Artist
           </div>
 
-          <div className="pt-14">
-            <div className="flex items-end justify-center gap-6">
+          <div className="absolute bottom-200 left-184">
+            <div className="flex h-32 w-56 items-end justify-center gap-4">
               {Array.from({ length: 5 }).map((_, index) => (
                 <motion.div
                   key={index}
@@ -196,7 +201,7 @@ export function MusicPlayer() {
                   variants={equalizerBarVariants}
                   animate={playerState}
                   initial={false}
-                  style={{ height: 12, willChange: "transform,opacity" }}
+                  style={{ height: 32, willChange: "transform,opacity" }}
                 />
               ))}
             </div>
@@ -205,7 +210,7 @@ export function MusicPlayer() {
       </div>
 
       {/* Progress */}
-      <div className="pt-20">
+      <div className="pt-40">
         <div className="h-6 w-full overflow-hidden radius-full bg-(--color-track)">
           <motion.div
             className={`h-full origin-left ${progressFillClassName}`}
@@ -262,7 +267,13 @@ export function MusicPlayer() {
             type="button"
             onClick={handleTogglePlayPause}
             className="grid size-56 place-items-center radius-full opacity-100 text-white"
-            style={{ background: "var(--Neutral-500, #717680)" }}
+            style={{
+              background: isLoading
+                ? "var(--Neutral-500, #717680)"
+                : isPlaying
+                  ? "var(--Primary-200, #8B5CF6)"
+                  : "var(--Primary-300, #7C3AED)",
+            }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 500, damping: 32 }}
@@ -289,7 +300,15 @@ export function MusicPlayer() {
                   transition={{ duration: 0.15 }}
                   className="grid place-items-center"
                 >
-                  <Pause className="size-28" />
+                  <Image
+                    src="/Icon/Pause.svg"
+                    alt="Pause"
+                    width={16}
+                    height={16}
+                    className="h-24 w-24 opacity-100"
+                    draggable={false}
+                    unoptimized
+                  />
                 </motion.span>
               ) : (
                 <motion.span
@@ -305,7 +324,7 @@ export function MusicPlayer() {
                     alt="Play"
                     width={14}
                     height={18}
-                    className="h-18 w-14 opacity-100"
+                    className="h-24 w-24 opacity-100"
                     draggable={false}
                     unoptimized
                   />
