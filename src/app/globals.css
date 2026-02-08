@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  
+
   /* Design System Colors - Tambahkan warna sesuai kebutuhan dari Figma */
   /* Contoh struktur warna yang bisa digunakan */
   --color-purple-500: #a855f7;
@@ -13,14 +13,58 @@
   --color-gray-500: #6b7280;
   --color-gray-600: #4b5563;
   --color-gray-900: #111827;
+
+  /* Music Player surfaces */
+  --color-surface: #0b0d12;
+  --color-surface-elevated: #11131a;
+  --color-track: #2a2f3a;
+  --color-track-fill: #8b95a7;
+  --color-text-muted: #a0a8b8;
+
+  /* Album gradient */
+  --color-pink-500: #ec4899;
+  --color-additional-pink-600: #db2777;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
-  
+  --spacing: 1px;
+
+  /* Spacing tokens (use with Tailwind arbitrary values: p-[var(--spacing-md)] ) */
+  --spacing-none: 0px;
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 40px;
+  --spacing-4xl: 48px;
+  --spacing-5xl: 64px;
+  --spacing-6xl: 80px;
+  --spacing-7xl: 96px;
+  --spacing-8xl: 128px;
+  --spacing-9xl: 160px;
+  --spacing-10xl: 192px;
+  --spacing-11xl: 256px;
+
+  /* Radius tokens */
+  --radius-none: 0px;
+  --radius-xxs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+  --radius-4xl: 48px;
+  --radius-full: 9999px;
+
   /* Custom spacing dengan 1px ratio (1:1 bukan 1:4) */
   /* p-1 = 1px, p-4 = 4px, p-16 = 16px */
   /* Spacing sudah dikonfigurasi di tailwind.config.ts */
@@ -36,5 +80,146 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+@layer utilities {
+  .shadow-player-paused {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow-player-playing {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 16px 40px rgba(0, 0, 0, 0.14),
+      0 0 32px color-mix(in oklab, var(--color-purple-500) 45%, transparent);
+  }
+
+  .display-3xl {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .display-3xl-regular {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  .display-3xl-medium {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  .display-3xl-semibold {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .display-3xl-bold {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .display-3xl-extrabold {
+    font-size: 6rem;
+    line-height: 7.5rem;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+
+  .display-2xl {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+  }
+
+  .display-2xl-regular {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  .display-2xl-medium {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  .display-2xl-semibold {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .display-2xl-bold {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .display-2xl-extrabold {
+    font-size: 4.5rem;
+    line-height: 5.625rem;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+
+  .radius-none {
+    border-radius: var(--radius-none);
+  }
+
+  .radius-xxs {
+    border-radius: var(--radius-xxs);
+  }
+
+  .radius-xs {
+    border-radius: var(--radius-xs);
+  }
+
+  .radius-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .radius-md {
+    border-radius: var(--radius-md);
+  }
+
+  .radius-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  .radius-xl {
+    border-radius: var(--radius-xl);
+  }
+
+  .radius-2xl {
+    border-radius: var(--radius-2xl);
+  }
+
+  .radius-3xl {
+    border-radius: var(--radius-3xl);
+  }
+
+  .radius-4xl {
+    border-radius: var(--radius-4xl);
+  }
+
+  .radius-full {
+    border-radius: var(--radius-full);
+  }
 }
