@@ -147,12 +147,12 @@ export function MusicPlayer() {
   };
 
   const progressFillClassName = isPlaying
-    ? "bg-purple-500"
-    : "bg-(--color-track-fill)";
+    ? "bg-(--Primary-200)"
+    : "bg-(--Neutral-500)";
 
   const volumeFillClassName = isVolumeHover
-    ? "bg-purple-500"
-    : "bg-(--color-track-fill)";
+    ? "bg-(--Primary-200)"
+    : "bg-(--Neutral-500)";
 
   return (
     <div className={`${containerClassName} ${containerStateClassName}`}>
@@ -211,25 +211,32 @@ export function MusicPlayer() {
 
       {/* Progress */}
       <div className="pt-40">
-        <div className="h-6 w-full overflow-hidden radius-full bg-(--color-track)">
+        <div className="h-8 w-468 -ml-16 overflow-hidden radius-full bg-(--Neutral-800) opacity-100">
           <motion.div
             className={`h-full origin-left ${progressFillClassName}`}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             style={{ scaleX: progress, willChange: "transform" }}
           />
         </div>
-        <div className="flex items-center justify-between pt-10 text-xs text-(--color-text-muted) tabular-nums">
-          <span>{formatTime(currentSeconds)}</span>
-          <span>{formatTime(totalSeconds)}</span>
+        <div
+          className="flex w-468 -ml-16 items-center justify-between pt-20 font-sans text-xs font-normal text-(--Neutral-500) tabular-nums"
+          style={{ letterSpacing: "-0.03em" }}
+        >
+          <span className="inline-flex h-24 min-w-20 items-center justify-start opacity-100">
+            {formatTime(currentSeconds)}
+          </span>
+          <span className="inline-flex h-24 min-w-20 items-center justify-end text-right opacity-100">
+            {formatTime(totalSeconds)}
+          </span>
         </div>
       </div>
 
       {/* Controls */}
       <div className="pt-22">
-        <div className="flex items-center justify-center gap-28">
+        <div className="flex items-center justify-center gap-8">
           <motion.button
             type="button"
-            className="grid size-40 place-items-center radius-full text-(--color-text-muted) transition-colors duration-200 hover:text-white"
+            className="group grid size-36 place-items-center radius-md p-8 opacity-100 text-(--color-text-muted) transition-colors duration-200 hover:bg-(--Neutral-800) hover:text-white active:opacity-90"
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Shuffle"
@@ -239,7 +246,7 @@ export function MusicPlayer() {
               alt="Shuffle"
               width={20}
               height={20}
-              className="h-20 w-20 opacity-100"
+              className="h-20 w-20 opacity-80 transition-[filter,opacity] duration-200 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
               draggable={false}
               unoptimized
             />
@@ -247,7 +254,7 @@ export function MusicPlayer() {
 
           <motion.button
             type="button"
-            className="grid size-40 place-items-center radius-full text-(--color-text-muted) transition-colors duration-200 hover:text-white"
+            className="group grid size-36 place-items-center radius-md p-8 opacity-100 text-(--color-text-muted) transition-colors duration-200 hover:bg-(--Neutral-800) hover:text-white active:opacity-90"
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Previous"
@@ -257,7 +264,7 @@ export function MusicPlayer() {
               alt="Skip Back"
               width={20}
               height={20}
-              className="h-20 w-20 opacity-100"
+              className="h-20 w-20 opacity-80 transition-[filter,opacity] duration-200 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
               draggable={false}
               unoptimized
             />
@@ -335,7 +342,7 @@ export function MusicPlayer() {
 
           <motion.button
             type="button"
-            className="grid size-40 place-items-center radius-full text-(--color-text-muted) transition-colors duration-200 hover:text-white"
+            className="group grid size-36 place-items-center radius-md p-8 opacity-100 text-(--color-text-muted) transition-colors duration-200 hover:bg-(--Neutral-800) hover:text-white active:opacity-90"
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Next"
@@ -345,7 +352,7 @@ export function MusicPlayer() {
               alt="Skip Forward"
               width={20}
               height={20}
-              className="h-20 w-20 opacity-100"
+              className="h-20 w-20 opacity-80 transition-[filter,opacity] duration-200 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
               draggable={false}
               unoptimized
             />
@@ -353,7 +360,7 @@ export function MusicPlayer() {
 
           <motion.button
             type="button"
-            className="grid size-40 place-items-center radius-full text-(--color-text-muted) transition-colors duration-200 hover:text-white"
+            className="group grid size-36 place-items-center radius-md p-8 opacity-100 text-(--color-text-muted) transition-colors duration-200 hover:bg-(--Neutral-800) hover:text-white active:opacity-90"
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
             aria-label="Repeat"
@@ -363,7 +370,7 @@ export function MusicPlayer() {
               alt="Repeat"
               width={20}
               height={20}
-              className="h-20 w-20 opacity-100"
+              className="h-20 w-20 opacity-80 transition-[filter,opacity] duration-200 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
               draggable={false}
               unoptimized
             />
@@ -386,7 +393,7 @@ export function MusicPlayer() {
 
           <div
             id="volume-track"
-            className="relative h-6 flex-1 overflow-hidden radius-full bg-(--color-track)"
+            className="relative h-4 w-444 overflow-hidden radius-full bg-(--Neutral-800) opacity-100"
             onPointerEnter={() => setIsVolumeHover(true)}
             onPointerLeave={() => setIsVolumeHover(false)}
             onPointerDown={(e) => {
@@ -407,7 +414,7 @@ export function MusicPlayer() {
             tabIndex={0}
           >
             <motion.div
-              className={`h-full origin-left ${volumeFillClassName}`}
+              className={`h-full origin-left transition-colors duration-200 ${volumeFillClassName}`}
               transition={{ duration: 0.2, ease: "easeInOut" }}
               style={{ scaleX: volume, willChange: "transform" }}
             />
