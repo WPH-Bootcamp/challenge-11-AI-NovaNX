@@ -159,7 +159,7 @@ export function MusicPlayer() {
       {/* Header */}
       <div className="flex items-start gap-24">
         <motion.div
-          className="relative shrink-0 -mt-16"
+          className="relative shrink-0 -mt-6"
           animate={{ scale: artworkScale }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
           style={{ willChange: "transform" }}
